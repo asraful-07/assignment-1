@@ -1,39 +1,43 @@
-### 1.What are some differences between interfaces and types in TypeScript?
+# TypeScript Concepts: Interface vs Type & Enums Explained
 
-TypeScript-এ interface এবং type দুটোই object এর shape define করতে ব্যবহার হয়, কিন্তু কিছু key difference আছে:
+## 1. What are some differences between interfaces and types in TypeScript?
 
-### Interface:
+TypeScript-এ `interface` এবং `type` দুটোই object এর shape define করতে ব্যবহৃত হয়, কিন্তু কিছু গুরুত্বপূর্ণ পার্থক্য রয়েছে:
 
-- মূলত object shape define করার জন্য ব্যবহৃত হয়।
-- Extend করা যায় এবং একাধিক interface merge করা যায়।
-- OOP style development-এ বেশি use হয়।
+### ▶ Interface
 
-### Type Alias:
+- মূলত **object shape** define করার জন্য ব্যবহৃত হয়।
+- সহজে **extend** করা যায় এবং **declaration merging** সাপোর্ট করে।
+- Class-based বা OOP style development-এ বেশি ব্যবহৃত হয়।
 
-- শুধু object নয়, primitive, union, tuple, function type ইত্যাদিও define করা যায়।
-- Merge করা যায় না (interface এর মতো)।
-- Complex type composition করতে বেশি সুবিধা দেয়।
+### ▶ Type Alias
 
-Interface Example
+- শুধু object নয় — **primitive, union, tuple, function type** ইত্যাদিও define করতে পারে।
+- Interface-এর মতো merge হয় না।
+- Complex type composition করতে সুবিধা দেয় (union & intersection types).
+
+---
+
+### ✅ **Interface Example (Merging Supported)**
+
+```ts
 interface User {
-name: string;
-age: number;
+  name: string;
+  age: number;
+}
+```
+
+```ts
+ MERGE হয়ে যাবে
+interface User {
+  email: string;
 }
 
-## MERGE হয়ে যাবে
-
-interface User {
-email: string;
-}
-
-Type Example
 type Person = {
-name: string;
-age: number;
+  name: string;
+  age: number;
 };
-
-Error: Duplicate type name allowed না
-type Person = { email: string }
+```
 
 ### 2.What is the use of enums in TypeScript? Provide an example of a numeric and string enum.
 
@@ -47,26 +51,28 @@ Enum ব্যবহার করলে code আরও readable, clean এবং
 TypeScript-এ enum default হিসেবে সংখ্যা ব্যবহার করে।
 0 থেকে শুরু হয়, চাইলে manually value দিতে পারো।
 
-Example:
-enum Role {
-Admin,
-User,
-Moderator
+```ts
+Example: enum Role {
+  Admin,
+  User,
+  Moderator,
 }
 
 let myRole: Role = Role.User;
 console.log(myRole);
+```
 
 ## B. String Enum
 
 String enum-এ প্রতিটি value একটি string হয়, যা readable এবং predictable।
 
-Example:
-enum Status {
-Success = "SUCCESS",
-Failed = "FAILED",
-Pending = "PENDING"
+```ts
+Example: enum Status {
+  Success = "SUCCESS",
+  Failed = "FAILED",
+  Pending = "PENDING",
 }
 
 let currentStatus: Status = Status.Success;
 console.log(currentStatus);
+```
