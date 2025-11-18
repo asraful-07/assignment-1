@@ -27,8 +27,9 @@ interface User {
 }
 ```
 
+MERGE হয়ে যাবে
+
 ```ts
- MERGE হয়ে যাবে
 interface User {
   email: string;
 }
