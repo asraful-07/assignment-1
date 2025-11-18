@@ -18,7 +18,7 @@ TypeScript-এ `interface` এবং `type` দুটোই object এর shape 
 
 ---
 
-### ✅ **Interface Example (Merging Supported)**
+### **Interface Example (Merging Supported)**
 
 ```ts
 interface User {
@@ -32,7 +32,11 @@ interface User {
 interface User {
   email: string;
 }
+```
 
+### **Type Example (Merging Supported)**
+
+```ts
 type Person = {
   name: string;
   age: number;
@@ -52,7 +56,7 @@ TypeScript-এ enum default হিসেবে সংখ্যা ব্যব�
 0 থেকে শুরু হয়, চাইলে manually value দিতে পারো।
 
 ```ts
-Example: enum Role {
+enum Role {
   Admin,
   User,
   Moderator,
@@ -67,7 +71,7 @@ console.log(myRole);
 String enum-এ প্রতিটি value একটি string হয়, যা readable এবং predictable।
 
 ```ts
-Example: enum Status {
+enum Status {
   Success = "SUCCESS",
   Failed = "FAILED",
   Pending = "PENDING",
