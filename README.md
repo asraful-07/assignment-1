@@ -14,7 +14,7 @@ TypeScript-এ interface এবং type দুটোই object এর shape defi
 - Merge করা যায় না (interface এর মতো)।
 - Complex type composition করতে বেশি সুবিধা দেয়।
 
-`Interface Example`
+Interface Example
 interface User {
 name: string;
 age: number;
@@ -26,7 +26,7 @@ interface User {
 email: string;
 }
 
-`Type Example`
+Type Example
 type Person = {
 name: string;
 age: number;
@@ -47,7 +47,7 @@ Enum ব্যবহার করলে code আরও readable, clean এবং
 TypeScript-এ enum default হিসেবে সংখ্যা ব্যবহার করে।
 0 থেকে শুরু হয়, চাইলে manually value দিতে পারো।
 
-`Example:`
+Example:
 enum Role {
 Admin,
 User,
@@ -61,7 +61,7 @@ console.log(myRole);
 
 String enum-এ প্রতিটি value একটি string হয়, যা readable এবং predictable।
 
-`Example:`
+Example:
 enum Status {
 Success = "SUCCESS",
 Failed = "FAILED",
