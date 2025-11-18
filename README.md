@@ -1,81 +1,72 @@
-# TypeScript Interview Questions — Blog Post
+### 1.What are some differences between interfaces and types in TypeScript?
 
-## 1️⃣ Difference between `any`, `unknown`, and `never` types in TypeScript
+TypeScript-এ interface এবং type দুটোই object এর shape define করতে ব্যবহার হয়, কিন্তু কিছু key difference আছে:
 
-TypeScript provides several special types to handle different scenarios. Three commonly used types are `any`, `unknown`, and `never`. They serve distinct purposes:
+### Interface:
 
-### `any`
+- মূলত object shape define করার জন্য ব্যবহৃত হয়।
+- Extend করা যায় এবং একাধিক interface merge করা যায়।
+- OOP style development-এ বেশি use হয়।
 
-- Represents any type and essentially disables type checking.
-- Using `any` is unsafe, because the compiler cannot catch errors.
+### Type Alias:
 
-**Example:**
+- শুধু object নয়, primitive, union, tuple, function type ইত্যাদিও define করা যায়।
+- Merge করা যায় না (interface এর মতো)।
+- Complex type composition করতে বেশি সুবিধা দেয়।
 
-```ts
-let value: any = 42;
-value = "hello";
-value = true;
-unknown
-Also represents any type, but type checking is enforced before using it.
-
-Safer than any because TypeScript forces you to check the type before performing operations.
-
-Example:
-let value: unknown = 10;
-if (typeof value === "number") {
-  console.log(value + 5);
-}
-never
-Represents values that never occur.
-
-Used for functions that never return, throw errors, or have infinite loops.
-
-Example:
-
-function throwError(message: string): never {
-  throw new Error(message);
+`Interface Example`
+interface User {
+name: string;
+age: number;
 }
 
-function infiniteLoop(): never {
-  while (true) {}
+## MERGE হয়ে যাবে
+
+interface User {
+email: string;
 }
 
-Point Table:
-Type	             Behavior	                          Usage
-any	          Disable type checking	            When type is unknown, quick prototyping
-unknown	      Safe alternative to any	        Type-safe code with runtime checks
-never	      Represents impossible values	    Functions that never return or throw
+`Type Example`
+type Person = {
+name: string;
+age: number;
+};
 
+Error: Duplicate type name allowed না
+type Person = { email: string }
 
-### 2️⃣ Use of `Enums` in TypeScript with Numeric and String Examples
-Enums are used to define a set of named constants, making the code more readable, maintainable, and type-safe. They can be numeric or string enums.
+### 2.What is the use of enums in TypeScript? Provide an example of a numeric and string enum.
 
-Numeric Enum Example
+## Enum কী?
 
-enum Direction {
-  Up,
-  Down,
-  Left,
-  Right
+Enum হলো TypeScript এর একটি special feature, যা একটি fixed group of values define করতে ব্যবহার হয়। যেমন: রোল (Admin, User), ডে (Sat, Sun), কালার (Red, Green), ইত্যাদি।
+Enum ব্যবহার করলে code আরও readable, clean এবং bug-free হয়।
+
+## A. Numeric Enum (ডিফল্টভাবে সংখ্যা)
+
+TypeScript-এ enum default হিসেবে সংখ্যা ব্যবহার করে।
+0 থেকে শুরু হয়, চাইলে manually value দিতে পারো।
+
+`Example:`
+enum Role {
+Admin,
+User,
+Moderator
 }
 
-const move: Direction = Direction.Left;
-console.log(move);
-String Enum Example
+let myRole: Role = Role.User;
+console.log(myRole);
 
+## B. String Enum
+
+String enum-এ প্রতিটি value একটি string হয়, যা readable এবং predictable।
+
+`Example:`
 enum Status {
-  Active = "ACTIVE",
-  Inactive = "INACTIVE",
-  Pending = "PENDING"
+Success = "SUCCESS",
+Failed = "FAILED",
+Pending = "PENDING"
 }
 
-const currentStatus: Status = Status.Active;
+let currentStatus: Status = Status.Success;
 console.log(currentStatus);
-Key Points:
-
-Enums improve readability compared to magic numbers or strings.
-
-They provide type-safety, preventing invalid values.
-
-Both numeric and string enums can be used depending on the scenario.
-```
